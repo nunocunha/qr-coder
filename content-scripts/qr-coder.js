@@ -1,9 +1,3 @@
-/*
-function $(selector, node) {
-  return (node || document).querySelector(selector);
-}
-*/
-
 var QRCoder = QRCoder || {};
 
 QRCoder.showOverlay = function (text) {
