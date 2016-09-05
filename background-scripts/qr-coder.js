@@ -37,18 +37,18 @@ chrome.contextMenus.create({
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
   switch (info.menuItemId) {
     case "qr-coder-selection":
-      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + info.selectionText + "');" });
+      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('', true);" });
       break;
     case "qr-coder-page":
-      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + info.pageUrl + "');" });
+      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.pageUrl) + "');" });
       break;
     case "qr-coder-link":
-      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + info.linkUrl + "');" });
+      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.linkUrl) + "');" });
       break;
     case "qr-coder-image":
     case "qr-coder-audio":
     case "qr-coder-video":
-      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + info.srcUrl + "');" });
+      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.srcUrl) + "');" });
       break;
   }
 });
