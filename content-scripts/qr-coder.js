@@ -1,24 +1,26 @@
 var QRCoder = QRCoder || {};
 
+QRCoder.maxSize = 40;
+
 QRCoder.showOverlay = function (base64, getFromSelection) {
   var data = (typeof getFromSelection === "boolean" && getFromSelection) ? window.getSelection().toString() : window.atob(base64);
   var threwException = false;
-  var qrSize = 1;
+  var size = 1;
 
   do {
     try {
-      var qr = qrcode(qrSize, "L");
+      var qr = qrcode(size, "L");
       qr.addData(data);
       qr.make();
       var imgCode = this.createElementFromHTML(qr.createImgTag(4));
       threwException = false;
     } catch (error) {
-      qrSize++;
+      size++;
       threwException = true;
     }
-  } while (threwException && qrSize <= 10);
+  } while (threwException && size <= this.maxSize);
 
-  if (qrSize <= 10) {
+  if (size <= this.maxSize) {
     var divShader = document.body.appendChild(document.createElement("div"));
     divShader.style.position = "fixed";
     divShader.style.top = "0";
