@@ -32,6 +32,8 @@ QRCoder.showOverlay = function (text) {
     divShader.addEventListener("click", function (event) {
       divShader.deleteSelf();
     }, false);
+  } else {
+    window.alert("Too much information for the QR code. Try again with less of it.");
   }
 };
 
