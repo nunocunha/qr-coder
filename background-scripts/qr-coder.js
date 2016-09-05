@@ -16,6 +16,24 @@ chrome.contextMenus.create({
   contexts: ['page']
 });
 
+chrome.contextMenus.create({
+  id: "qr-coder-image",
+  title: "Generate a QR Code for this image",
+  contexts: ['image']
+});
+
+chrome.contextMenus.create({
+  id: "qr-coder-audio",
+  title: "Generate a QR Code for this sound",
+  contexts: ['audio']
+});
+
+chrome.contextMenus.create({
+  id: "qr-coder-video",
+  title: "Generate a QR Code for this video",
+  contexts: ['video']
+});
+
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
   switch (info.menuItemId) {
     case "qr-coder-selection":
@@ -26,6 +44,11 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
       break;
     case "qr-coder-link":
       chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + info.linkUrl + "');" });
+      break;
+    case "qr-coder-image":
+    case "qr-coder-audio":
+    case "qr-coder-video":
+      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + info.srcUrl + "');" });
       break;
   }
 });
