@@ -40,15 +40,15 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
       chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('', true);" });
       break;
     case "qr-coder-page":
-      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.pageUrl) + "');" });
+      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.pageUrl) + "', false);" });
       break;
     case "qr-coder-link":
-      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.linkUrl) + "');" });
+      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.linkUrl) + "', false);" });
       break;
     case "qr-coder-image":
     case "qr-coder-audio":
     case "qr-coder-video":
-      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.srcUrl) + "');" });
+      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.srcUrl) + "', false);" });
       break;
   }
 });

@@ -1,13 +1,14 @@
 var QRCoder = QRCoder || {};
 
-QRCoder.showOverlay = function (text) {
+QRCoder.showOverlay = function (base64, getFromSelection) {
+  var data = (typeof getFromSelection === "boolean" && getFromSelection) ? window.getSelection().toString() : window.atob(base64);
   var threwException = false;
   var qrSize = 1;
 
   do {
     try {
       var qr = qrcode(qrSize, "L");
-      qr.addData(text);
+      qr.addData(data);
       qr.make();
       var imgCode = this.createElementFromHTML(qr.createImgTag(4));
       threwException = false;
@@ -33,7 +34,7 @@ QRCoder.showOverlay = function (text) {
       divShader.deleteSelf();
     }, false);
   } else {
-    window.alert("Too much information for the QR code. Try again with less of it.");
+    window.alert("Too much information for the QR code, try again with less.");
   }
 };
 
