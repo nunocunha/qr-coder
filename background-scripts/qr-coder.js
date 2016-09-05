@@ -34,7 +34,14 @@ chrome.contextMenus.create({
   contexts: ['video']
 });
 
+chrome.contextMenus.create({
+  id: "qr-coder-frame",
+  title: "Generate a QR Code for this frame",
+  contexts: ['frame']
+});
+
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
+  console.log(info);
   switch (info.menuItemId) {
     case "qr-coder-selection":
       chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('', true);" });
@@ -49,6 +56,9 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
     case "qr-coder-audio":
     case "qr-coder-video":
       chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.srcUrl) + "', false);" });
+      break;
+    case "qr-coder-frame":
+      chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('" + window.btoa(info.frameUrl) + "', false);" });
       break;
   }
 });
