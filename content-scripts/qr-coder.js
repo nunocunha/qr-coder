@@ -15,7 +15,7 @@ QRCoder.showOverlay = function (text) {
       qrSize++;
       threwException = true;
     }
-  } while (threwException || qrSize <= 10);
+  } while (threwException && qrSize <= 10);
 
   if (qrSize <= 10) {
     var divShader = document.body.appendChild(document.createElement("div"));
