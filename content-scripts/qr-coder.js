@@ -21,22 +21,24 @@ QRCoder.showOverlay = function (text) {
       qrSize++;
       threwException = true;
     }
-  } while (threwException);
+  } while (threwException || qrSize <= 10);
 
-  var divShader = document.body.appendChild(document.createElement("div"));
-  divShader.style.position = "fixed";
-  divShader.style.top = "0";
-  divShader.style.left = "0";
-  divShader.style.right = "0";
-  divShader.style.bottom = "0";
-  divShader.style.backgroundColor = "rgba(0, 0, 0, 0.33)";
-  divShader.style.backgroundImage = "url('" + imgCode.childNodes[0].src + "')";
-  divShader.style.backgroundRepeat = "no-repeat";
-  divShader.style.backgroundPosition = "center";
-  divShader.style.zIndex = "10000000";
-  divShader.addEventListener("click", function (event) {
-    divShader.deleteSelf();
-  }, false);
+  if (qrSize <= 10) {
+    var divShader = document.body.appendChild(document.createElement("div"));
+    divShader.style.position = "fixed";
+    divShader.style.top = "0";
+    divShader.style.left = "0";
+    divShader.style.right = "0";
+    divShader.style.bottom = "0";
+    divShader.style.backgroundColor = "rgba(0, 0, 0, 0.33)";
+    divShader.style.backgroundImage = "url('" + imgCode.childNodes[0].src + "')";
+    divShader.style.backgroundRepeat = "no-repeat";
+    divShader.style.backgroundPosition = "center";
+    divShader.style.zIndex = "10000000";
+    divShader.addEventListener("click", function (event) {
+      divShader.deleteSelf();
+    }, false);
+  }
 };
 
 
