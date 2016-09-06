@@ -1,0 +1,31 @@
+div#qr-coder-shader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.33);
+  z-index: 10000000;
+}
+
+div#qr-coder-align {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+img#qr-coder-image {
+  display: block;
+}
+
+div#qr-coder-warning {
+  display: block;
+  content: 'If you\'re having trouble scanning the QR code, try generating one with less information.';
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
+  padding: 16px;
+  padding-top: 0px;
+  box-sizing: border-box;
+  text-align: center;
+}

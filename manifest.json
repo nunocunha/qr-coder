@@ -29,6 +29,9 @@
         "content-scripts/qrcode.js",
         "content-scripts/qr-coder.js"
       ],
+      "css": [
+        "content-scripts/qr-coder.css"
+      ],
       "run-at": "document_end"
     }
   ]
