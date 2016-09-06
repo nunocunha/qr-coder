@@ -51,7 +51,6 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
-  console.log(info);
   switch (info.menuItemId) {
     case "qr-coder-selection":
       chrome.tabs.executeScript(tab.id, { code: "QRCoder.showOverlay('', true);" });
