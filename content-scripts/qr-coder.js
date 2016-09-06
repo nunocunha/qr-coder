@@ -27,6 +27,9 @@ QRCoder.showOverlay = function (base64, getFromSelection) {
     }, false);
 
     var divAlign = divShader.appendChild(document.createElement("div"));
+    divAlign.addEventListener("click", function (event) {
+      event.stopPropagation();
+    }, false);
     divAlign.setAttribute("id", "qr-coder-align");
 
     imgCode = divAlign.appendChild(imgCode.childNodes[0]);
