@@ -1,3 +1,13 @@
+chrome.extension.isAllowedFileSchemeAccess(function (isAllowedAccess) {
+  if (isAllowedAccess) return;
+
+  alert('Please allow access to file URLs on the following screen.');
+
+  chrome.tabs.create({
+    url: 'chrome://extensions/?id=' + chrome.runtime.id
+  });
+});
+
 chrome.contextMenus.create({
   id: "qr-coder-selection",
   title: "Generate a QR Code for this selection",
