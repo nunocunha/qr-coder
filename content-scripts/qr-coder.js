@@ -4,7 +4,6 @@ QRCoder.maxSize = 40;
 
 QRCoder.showOverlay = function (base64, getFromSelection) {
   var data = (typeof getFromSelection === "boolean" && getFromSelection) ? window.getSelection().toString() : window.atob(base64);
-  var threwException = false;
   var size = 1;
 
   do {
@@ -28,17 +27,36 @@ QRCoder.showOverlay = function (base64, getFromSelection) {
     divShader.style.right = "0";
     divShader.style.bottom = "0";
     divShader.style.backgroundColor = "rgba(0, 0, 0, 0.33)";
-    divShader.style.backgroundImage = "url('" + imgCode.childNodes[0].src + "')";
-    divShader.style.backgroundRepeat = "no-repeat";
-    divShader.style.backgroundPosition = "center";
     divShader.style.zIndex = "10000000";
     divShader.addEventListener("click", function (event) {
       divShader.deleteSelf();
     }, false);
+    
+    var divAlign = divShader.appendChild(document.createElement("div"));
+    divAlign.style.position = "absolute";
+    divAlign.style.top = "50%";
+    divAlign.style.left = "50%";
+    divAlign.style.transform = "translate(-50%, -50%)";
+    
+    imgCode = divAlign.appendChild(imgCode.childNodes[0]);
+    imgCode.style.display = "block";
+
+    if (size > 12) {
+      var divWarning = divAlign.appendChild(document.createElement("div"));
+      divWarning.appendChild(document.createTextNode("If you're having trouble scanning the QR code, try generating one with less information."));
+      divWarning.style.backgroundColor = "rgba(255, 255, 255, 1)";
+      divWarning.style.color = "rgba(0, 0, 0, 1)";
+      divWarning.style.width = imgCode.getAttribute("width") + "px";
+      divWarning.style.padding = "16px";
+      divWarning.style.paddingTop = "0px";
+      divWarning.style.boxSizing = "border-box";
+      divWarning.style.textAlign = "center";
+    }
   } else {
     window.alert("Too much information for the QR code, try again with less.");
   }
 };
+
 
 
 QRCoder.createElementFromHTML = function (html) {
