@@ -38,8 +38,6 @@ QRCoder.showOverlay = function (base64, getFromSelection) {
     if (size > 12) {
       var divWarning = divAlign.appendChild(document.createElement("div"));
       divWarning.setAttribute("id", "qr-coder-warning");
-      divWarning.appendChild(document.createTextNode("If you're having trouble scanning the QR code, try generating one with less information."));
-      divWarning.style.width = imgCode.getAttribute("width") + "px";
     }
   } else {
     window.alert("Too much information for the QR code, try again with less.");

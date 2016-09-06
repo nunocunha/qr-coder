@@ -20,6 +20,10 @@ img#qr-coder-image {
 }
 
 div#qr-coder-warning {
+  position: relative;
+}
+
+div#qr-coder-warning::after {
   display: block;
   content: 'If you\'re having trouble scanning the QR code, try generating one with less information.';
   background-color: rgba(255, 255, 255, 1);
@@ -28,4 +32,9 @@ div#qr-coder-warning {
   padding-top: 0px;
   box-sizing: border-box;
   text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  cursor: default;
 }
