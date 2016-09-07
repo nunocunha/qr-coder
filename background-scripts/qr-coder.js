@@ -1,56 +1,60 @@
-(!(typeof browser.extension.isAllowedFileSchemeAccess === "undefined")) && browser.extension.isAllowedFileSchemeAccess(function (isAllowedAccess) {
-  if (isAllowedAccess) return;
+var crossBrowser = chrome.hasOwnProperty("extension") ? chrome : browser;
 
-  alert('Please allow access to file URLs on the following screen.');
+if (crossBrowser.extension.hasOwnProperty("isAllowedFileSchemeAccess")) {
+  crossBrowser.extension.isAllowedFileSchemeAccess(function (isAllowedAccess) {
+    if (isAllowedAccess) return;
 
-  browser.tabs.create({
-    url: 'chrome://extensions/?id=' + browser.runtime.id
+    alert('Please allow access to file URLs on the following screen.');
+
+    crossBrowser.tabs.create({
+      url: 'chrome://extensions/?id=' + crossBrowser.runtime.id
+    });
   });
-});
+}
 
-browser.contextMenus.create({
+crossBrowser.contextMenus.create({
   id: "qr-coder-selection",
   title: "Generate a QR Code for this selection",
   contexts: ['selection']
 });
 
-browser.contextMenus.create({
+crossBrowser.contextMenus.create({
   id: "qr-coder-link",
   title: "Generate a QR Code for this link",
   contexts: ['link']
 });
 
-browser.contextMenus.create({
+crossBrowser.contextMenus.create({
   id: "qr-coder-page",
   title: "Generate a QR Code for this page",
   contexts: ['page']
 });
 
-browser.contextMenus.create({
+crossBrowser.contextMenus.create({
   id: "qr-coder-image",
   title: "Generate a QR Code for this image",
   contexts: ['image']
 });
 
-browser.contextMenus.create({
+crossBrowser.contextMenus.create({
   id: "qr-coder-audio",
   title: "Generate a QR Code for this sound",
   contexts: ['audio']
 });
 
-browser.contextMenus.create({
+crossBrowser.contextMenus.create({
   id: "qr-coder-video",
   title: "Generate a QR Code for this video",
   contexts: ['video']
 });
 
-browser.contextMenus.create({
+crossBrowser.contextMenus.create({
   id: "qr-coder-frame",
   title: "Generate a QR Code for this frame",
   contexts: ['frame']
 });
 
-browser.contextMenus.onClicked.addListener(function (info, tab) {
+crossBrowser.contextMenus.onClicked.addListener(function (info, tab) {
   var code;
 
   switch (info.menuItemId) {
@@ -73,5 +77,5 @@ browser.contextMenus.onClicked.addListener(function (info, tab) {
       break;
   }
 
-  browser.tabs.executeScript(tab.id, { code: code });
+  crossBrowser.tabs.executeScript(tab.id, { code: code });
 });
