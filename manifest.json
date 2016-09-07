@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
   "name": "QR Coder",
+  "author": "Nuno Cunha",
   "version": "1",
   "description": "Encodes text selection, links and page URLs into a QR code.",
   "icons": {
@@ -18,7 +19,8 @@
   "background": {
     "scripts": [
       "background-scripts/qr-coder.js"
-    ]
+    ],
+    "persistent": true
   },
   "content_scripts": [
     {
@@ -32,7 +34,7 @@
       "css": [
         "content-scripts/qr-coder.css"
       ],
-      "run-at": "document_end"
+      "run_at": "document_start"
     }
   ]
 }
