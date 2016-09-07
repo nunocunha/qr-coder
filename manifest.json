@@ -10,7 +10,8 @@
     "32": "icons/qr-32.png",
     "48": "icons/qr-48.png",
     "64": "icons/qr-64.png",
-    "96": "icons/qr-96.png"
+    "96": "icons/qr-96.png",
+    "128": "icons/qr-128.png"
   },
   "permissions": [
     "contextMenus",
