@@ -2,18 +2,6 @@ var crossBrowser = crossBrowser ||
   (typeof chrome === "object" && chrome.hasOwnProperty("extension") ?
     chrome : browser);
 
-if (crossBrowser.extension.hasOwnProperty("isAllowedFileSchemeAccess")) {
-  crossBrowser.extension.isAllowedFileSchemeAccess(function (isAllowedAccess) {
-    if (isAllowedAccess) return;
-
-    alert('Please allow access to file URLs on the following screen.');
-
-    crossBrowser.tabs.create({
-      url: 'chrome://extensions/?id=' + crossBrowser.runtime.id
-    });
-  });
-}
-
 crossBrowser.contextMenus.create({
   id: "qr-coder-selection",
   title: "Generate a QR Code for this selection",
