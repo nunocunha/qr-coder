@@ -2,8 +2,8 @@ var QRCoder = QRCoder || {};
 
 QRCoder.maxSize = 40;
 
-QRCoder.showOverlay = function (base64, getFromSelection) {
-  var data = (typeof getFromSelection === "boolean" && getFromSelection) ? window.getSelection().toString() : window.atob(base64);
+QRCoder.showOverlay = function (data, isDataFromSelection) {
+  var data = (typeof isDataFromSelection === "boolean" && isDataFromSelection) ? window.getSelection().toString() : data;
   var size = 1;
 
   do {

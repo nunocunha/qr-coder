@@ -30,7 +30,8 @@
       ],
       "js": [
         "content-scripts/qrcode.js",
-        "content-scripts/qr-coder.js"
+        "content-scripts/qr-coder.js",
+        "content-scripts/message-handler.js"
       ],
       "css": [
         "content-scripts/qr-coder.css"

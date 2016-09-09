@@ -1,4 +1,6 @@
-var crossBrowser = chrome.hasOwnProperty("extension") ? chrome : browser;
+var crossBrowser = crossBrowser ||
+  (typeof chrome === "object" && typeof chrome.hasOwnProperty === "function" && chrome.hasOwnProperty("extension") ?
+    chrome : browser);
 
 if (crossBrowser.extension.hasOwnProperty("isAllowedFileSchemeAccess")) {
   crossBrowser.extension.isAllowedFileSchemeAccess(function (isAllowedAccess) {
@@ -55,27 +57,30 @@ crossBrowser.contextMenus.create({
 });
 
 crossBrowser.contextMenus.onClicked.addListener(function (info, tab) {
-  var code;
+  var data = "";
+  var isDataFromSelection = false;
 
   switch (info.menuItemId) {
     case "qr-coder-selection":
-      code = "QRCoder.showOverlay('', true);";
+      isDataFromSelection = true;
       break;
     case "qr-coder-page":
-      code = "QRCoder.showOverlay('" + window.btoa(info.pageUrl) + "', false);";
+      data = info.pageUrl;
       break;
     case "qr-coder-link":
-      code = "QRCoder.showOverlay('" + window.btoa(info.linkUrl) + "', false);";
+      data = info.linkUrl;
       break;
     case "qr-coder-image":
     case "qr-coder-audio":
     case "qr-coder-video":
-      code = "QRCoder.showOverlay('" + window.btoa(info.srcUrl) + "', false);";
+      data = info.srcUrl;
       break;
     case "qr-coder-frame":
-      code = "QRCoder.showOverlay('" + window.btoa(info.frameUrl) + "', false);";
+      data = info.frameUrl;
       break;
   }
 
-  crossBrowser.tabs.executeScript(tab.id, { code: code });
+  crossBrowser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    crossBrowser.tabs.sendMessage(tabs[0].id, { data: data, isDataFromSelection: isDataFromSelection });
+  });
 });
