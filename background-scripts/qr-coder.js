@@ -1,5 +1,5 @@
 var crossBrowser = crossBrowser ||
-  (typeof chrome === "object" && typeof chrome.hasOwnProperty === "function" && chrome.hasOwnProperty("extension") ?
+  (typeof chrome === "object" && chrome.hasOwnProperty("extension") ?
     chrome : browser);
 
 if (crossBrowser.extension.hasOwnProperty("isAllowedFileSchemeAccess")) {
