@@ -16,7 +16,7 @@ After the QR code is presented, click outside of its box to close it.
 
 ## Downloads
 - Firefox
-  - Head over to [AMO]() and install it as usual.
+  - Head over to [AMO](https://addons.mozilla.org/en-us/firefox/addon/qr-coder/) and install it as usual.
 
 - Chrome and Edge
   - Download the repository and extract it to a folder, then use the browser's mechanisms to sideload it.
