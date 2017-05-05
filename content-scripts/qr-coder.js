@@ -11,7 +11,7 @@ QRCoder.showOverlay = function (data, isDataFromSelection) {
       var qr = qrcode(size, "L");
       qr.addData(data);
       qr.make();
-      var imgCode = this.createElementFromHTML(qr.createImgTag(4));
+      var imgCode = this.createElementFromHTML(qr.createSvgTag(6));
       threwException = false;
     } catch (error) {
       size++;

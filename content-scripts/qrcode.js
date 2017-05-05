@@ -457,6 +457,8 @@ var qrcode = function() {
       qrSvg += '<svg';
       qrSvg += ' width="' + size + 'px"';
       qrSvg += ' height="' + size + 'px"';
+      qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '"';
+      qrSvg += ' preserveAspectRatio="xMaxYMax"';
       qrSvg += ' xmlns="http://www.w3.org/2000/svg"';
       qrSvg += '>';
       qrSvg += '<path d="';

@@ -15,8 +15,15 @@ div#qr-coder-align {
   transform: translate(-50%, -50%);
 }
 
-img#qr-coder-image {
+#qr-coder-image {
   display: block;
+  background-color: rgba(255, 255, 255, 1);
+  min-height: 232px;
+  min-width: 232px;
+  height: auto !important;
+  width: 100% !important;
+  max-height: 80vmin;
+  max-width: 80vmin;
 }
 
 div#qr-coder-warning {
