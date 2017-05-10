@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "QR Coder",
   "author": "Nuno Cunha",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Encodes text selection and URLs into QR codes",
   "homepage_url": "https://github.com/nunocunha/qr-coder",
   "icons": {
