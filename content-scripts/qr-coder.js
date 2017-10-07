@@ -14,7 +14,6 @@ QRCoder.showOverlay = function (data, isDataFromSelection) {
       var qr = qrcode(size, "L");
       qr.addData(data);
       qr.make();
-      var imgCode = this.createElementFromHTML(qr.createSvgTag(6));
       threwException = false;
     } catch (error) {
       size++;
@@ -36,7 +35,7 @@ QRCoder.showOverlay = function (data, isDataFromSelection) {
     }, false);
     divAlign.setAttribute("id", "qr-coder-align");
 
-    imgCode = divAlign.appendChild(imgCode.childNodes[0]);
+    imgCode = divAlign.appendChild(this.createElementFromHTML(qr.createImgTag(6)).childNodes[0]);
     imgCode.setAttribute("id", "qr-coder-image");
 
     if (size > 12) {
