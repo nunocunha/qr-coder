@@ -1,4 +1,7 @@
 var QRCoder = QRCoder || {};
+var crossBrowser = crossBrowser ||
+  (typeof chrome === "object" && chrome.hasOwnProperty("extension") ?
+    chrome : browser);
 
 QRCoder.maxSize = 40;
 
@@ -24,6 +27,7 @@ QRCoder.showOverlay = function (data, isDataFromSelection) {
     divShader.setAttribute("id", "qr-coder-shader");
     divShader.addEventListener("click", function (event) {
       divShader.deleteSelf();
+      crossBrowser.runtime.sendMessage(null, { isShowing: false });
     }, false);
 
     var divAlign = divShader.appendChild(document.createElement("div"));
@@ -39,6 +43,8 @@ QRCoder.showOverlay = function (data, isDataFromSelection) {
       var divWarning = divAlign.appendChild(document.createElement("div"));
       divWarning.setAttribute("id", "qr-coder-warning");
     }
+
+    crossBrowser.runtime.sendMessage(null, { isShowing: true });
   } else {
     window.alert("Too much information for the QR code, try again with less.");
   }
