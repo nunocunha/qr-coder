@@ -2,6 +2,10 @@ var crossBrowser = crossBrowser ||
   (typeof chrome === "object" && chrome.hasOwnProperty("extension") ?
     chrome : browser);
 
+var QRCoderState = {
+  showingTabs: [],
+};
+
 crossBrowser.contextMenus.createQRCoder = function () {
   crossBrowser.contextMenus.create({
     id: "qr-coder-selection",
@@ -78,9 +82,19 @@ crossBrowser.contextMenus.onClicked.addListener(function (info, tab) {
 });
 
 crossBrowser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.isShowing) {
+  QRCoderState.showingTabs[sender.tab.id] = request.isShowing;
+
+  crossBrowser.contextMenus.updateQRCoder(request.isShowing);
+});
+
+crossBrowser.tabs.onActivated.addListener(function (activeInfo) {
+  crossBrowser.contextMenus.updateQRCoder(QRCoderState.showingTabs[activeInfo.tabId]);
+});
+
+crossBrowser.contextMenus.updateQRCoder = function (isShowing) {
+  if(isShowing) {
     crossBrowser.contextMenus.removeAll();
   } else {
     crossBrowser.contextMenus.createQRCoder();
   }
-});
+};
