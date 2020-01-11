@@ -9,43 +9,43 @@ var QRCoderState = {
 crossBrowser.contextMenus.createQRCoder = function () {
   crossBrowser.contextMenus.create({
     id: "qr-coder-selection",
-    title: "Generate a QR Code for this selection",
+    title: "Generate QR Code for selection",
     contexts: ['selection']
   });
 
   crossBrowser.contextMenus.create({
     id: "qr-coder-link",
-    title: "Generate a QR Code for this link",
+    title: "Generate QR Code for link",
     contexts: ['link']
   });
 
   crossBrowser.contextMenus.create({
     id: "qr-coder-page",
-    title: "Generate a QR Code for this page",
+    title: "Generate QR Code for page",
     contexts: ['page']
   });
 
   crossBrowser.contextMenus.create({
     id: "qr-coder-image",
-    title: "Generate a QR Code for this image",
+    title: "Generate QR Code for image",
     contexts: ['image']
   });
 
   crossBrowser.contextMenus.create({
     id: "qr-coder-audio",
-    title: "Generate a QR Code for this sound",
+    title: "Generate QR Code for audio",
     contexts: ['audio']
   });
 
   crossBrowser.contextMenus.create({
     id: "qr-coder-video",
-    title: "Generate a QR Code for this video",
+    title: "Generate QR Code for video",
     contexts: ['video']
   });
 
   crossBrowser.contextMenus.create({
     id: "qr-coder-frame",
-    title: "Generate a QR Code for this frame",
+    title: "Generate QR Code for frame",
     contexts: ['frame']
   });
 };
